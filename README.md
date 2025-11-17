@@ -3,7 +3,7 @@
 ## Members
 
 1. [Cire Mijares] (https://github.com/CireMijares)
-
+2. [Ebcay, Aahron Mhael E.] (https://github.com/Aahron)
 ### Milestone 1 (Nov Week 1)
 
 - **What we'll do:**
