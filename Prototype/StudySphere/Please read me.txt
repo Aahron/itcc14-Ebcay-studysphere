@@ -1,0 +1,13 @@
+Notes (important):
+
+1. The command below will import requirements needed for the code to run on your vscode:
+
+pip install -r requirements.txt
+
+So keep the requirements.txt
+
+
+2. CSS file should always be in "static" folder due to how flask works
+
+
+3. Still figuring out why in practice the create fields still accept null values
