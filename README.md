@@ -2,9 +2,9 @@
 
 ## Members
 
-1. [Cire Mijares] (https://github.com/CireMijares)
-2. [Ebcay, Aahron Mhael E.] (https://github.com/Aahron)
-3. [Nicole Sai Sopie Gabutan] (https://github.com/sOpi)
+1. [Cire Mijares](https://github.com/CireMijares)
+2. [Ebcay, Aahron Mhael E.](https://github.com/Aahron)
+3. [Nicole Sai Sopie Gabutan](https://github.com/sOpi)
 
 ### Milestone 1 (Nov Week 1)
 
@@ -42,22 +42,20 @@
   - Update OpenAPI to match actual responses and edge cases.
 - **Deliverables:**
   - All planned endpoints implemented and tested locally.
-  - Seed script and instructions in README.
   - OpenAPI spec validated in Swagger Editor (no schema errors).
 - **Checklist:**
   - [ ] All endpoints done
   - [ ] Validation + errors consistent
-  - [ ] Seed data added
   - [ ] OpenAPI validated
 
 ### Milestone 4 (Nov Week 4): Frontend Integration
 
 - **What you’ll do:**
-  - Build a simple UI (Plain JS or React) to call your API (list/create/claim).
+  - Build a simple UI to call your API.
   - Handle loading and error states on the frontend.
   - If presenting remotely, prepare ngrok for HTTPS URL (optional).
 - **Deliverables:**
-  - Frontend that demonstrates key API flows.
+  - Frontend that demonstrates how the API flows.
   - Instructions in README on how to run frontend + connect to API.
 - **Checklist:**
   - [ ] Frontend lists data
