@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Manage Reminders</h2>
+        <p>Set reminders for important tasks</p>
+    </div>
+    <button class="btn-primary" onclick="openReminderModal()">
+        <i class="fas fa-plus"></i>
+        New Reminder
+    </button>
+</div>
+
+<div class="reminder-stats">
+    <div class="reminder-stat-card">
+        <div class="reminder-stat-icon blue">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="reminder-stat-info">
+            <h3 id="total-reminders">0</h3>
+            <p>Total Reminders</p>
+        </div>
+    </div>
+    <div class="reminder-stat-card">
+        <div class="reminder-stat-icon orange">
+            <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="reminder-stat-info">
+            <h3 id="this-week-reminders">0</h3>
+            <p>This Week</p>
+        </div>
+    </div>
+    <div class="reminder-stat-card">
+        <div class="reminder-stat-icon red">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="reminder-stat-info">
+            <h3 id="today-reminders">0</h3>
+            <p>Today</p>
+        </div>
+    </div>
+</div>
+
+<div class="reminders-list" id="reminders-container">
+    <!-- Reminders will be loaded here -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadReminders();
+        setActiveNav('reminders');
+    });
+</script>
+{% endblock %}
+

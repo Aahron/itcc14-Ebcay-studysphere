@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Manage Announcements</h2>
+        <p>Post and manage class announcements</p>
+    </div>
+    <button class="btn-primary" onclick="openAnnouncementModal()">
+        <i class="fas fa-plus"></i>
+        New Announcement
+    </button>
+</div>
+
+<div class="announcements-list" id="announcements-container">
+    <!-- Announcements will be loaded here -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAnnouncements();
+        setActiveNav('announcements');
+    });
+</script>
+{% endblock %}
+

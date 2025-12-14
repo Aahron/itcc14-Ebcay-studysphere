@@ -1,8 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
-from flask import send_from_directory # for frontend html css
 
 import os
 
@@ -109,10 +107,30 @@ with app.app_context():
         db.create_all()
         print("Database created.")
 
-#for frontend html css
+# Frontend template routes
 @app.route("/")
-def serve_html():
-    return send_from_directory(".", "index.html")
+def dashboard():
+    return render_template("dashboard.html")
+
+@app.route("/subjects")
+def subjects():
+    return render_template("subjects.html")
+
+@app.route("/announcements")
+def announcements():
+    return render_template("announcements.html")
+
+@app.route("/materials")
+def materials():
+    return render_template("materials.html")
+
+@app.route("/assignments")
+def assignments():
+    return render_template("assignments.html")
+
+@app.route("/reminders")
+def reminders():
+    return render_template("reminders.html")
 
 ## Subject endpoints here
 @app.get("/subject")
@@ -164,6 +182,11 @@ def delete_subject(id):
     return "", 204
 
 # announcement endpoints here
+@app.get("/announcement")
+def get_all_announcements():
+    announcements = Announcement.query.order_by(Announcement.date_posted.desc()).all()
+    return jsonify([a.to_dict() for a in announcements])
+
 @app.get("/subject/<int:id>/announcement")
 def get_announcements_for_subject(id):
     announcements = Announcement.query.filter_by(subject_id=id).all()
@@ -211,6 +234,36 @@ def delete_announcement(id):
     db.session.commit()
     return "", 204
 
+@app.delete("/material/<int:id>")
+def delete_material(id):
+    material = Material.query.get(id)
+    if not material:
+        return {"error": "Not found"}, 404
+    
+    db.session.delete(material)
+    db.session.commit()
+    return "", 204
+
+@app.delete("/assignment/<int:id>")
+def delete_assignment(id):
+    assignment = Assignment.query.get(id)
+    if not assignment:
+        return {"error": "Not found"}, 404
+    
+    db.session.delete(assignment)
+    db.session.commit()
+    return "", 204
+
+@app.delete("/reminder/<int:id>")
+def delete_reminder(id):
+    reminder = Reminder.query.get(id)
+    if not reminder:
+        return {"error": "Not found"}, 404
+    
+    db.session.delete(reminder)
+    db.session.commit()
+    return "", 204
+
 # comments endpoints
 @app.get("/announcement/<int:id>/comments")
 def get_comments(id):
@@ -230,6 +283,11 @@ def add_comment(id):
     return jsonify(comment.to_dict()), 201
 
 # materials endpoints
+@app.get("/material")
+def get_all_materials():
+    materials = Material.query.order_by(Material.date_uploaded.desc()).all()
+    return jsonify([m.to_dict() for m in materials])
+
 @app.get("/subject/<int:id>/materials")
 def get_materials(id):
     materials = Material.query.filter_by(subject_id=id).all()
@@ -249,6 +307,11 @@ def create_material(id):
     return jsonify(material.to_dict()), 201
 
 # assignments endpoints
+@app.get("/assignment")
+def get_all_assignments():
+    assignments = Assignment.query.all()
+    return jsonify([a.to_dict() for a in assignments])
+
 @app.get("/subject/<int:id>/assignments")
 def get_assignments(id):
     assignments = Assignment.query.filter_by(subject_id=id).all()
@@ -268,6 +331,11 @@ def create_assignment(id):
     return jsonify(assignment.to_dict()), 201
 
 # reminders endpoints
+@app.get("/reminder")
+def get_all_reminders():
+    reminders = Reminder.query.all()
+    return jsonify([r.to_dict() for r in reminders])
+
 @app.get("/subject/<int:id>/reminders")
 def get_reminders(id):
     reminders = Reminder.query.filter_by(subject_id=id).all()

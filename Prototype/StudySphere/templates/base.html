@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySphere - Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-circle">
+                        <div class="logo-inner"></div>
+                    </div>
+                    <span class="logo-text">StudySphere</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <h1 class="dashboard-title">Teacher Dashboard</h1>
+                <p class="teacher-name">Prof. Martinez</p>
+            </div>
+            <div class="header-right">
+                <div class="icon-btn notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="icon-btn profile-btn">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="icon-btn logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-wrapper">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <a href="/" class="nav-item" data-page="dashboard">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="/subjects" class="nav-item" data-page="subjects">
+                        <i class="fas fa-book"></i>
+                        <span>My Subjects</span>
+                    </a>
+                    <a href="/announcements" class="nav-item" data-page="announcements">
+                        <i class="fas fa-bell"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="/materials" class="nav-item" data-page="materials">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Materials</span>
+                    </a>
+                    <a href="/assignments" class="nav-item" data-page="assignments">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Assignments</span>
+                    </a>
+                    <a href="/reminders" class="nav-item" data-page="reminders">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Reminders</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Modal Title</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div class="welcome-banner">
+        <h2>Welcome back, Prof. Martinez!</h2>
+        <p>Manage your classes and engage with your students</p>
+    </div>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon blue">
+            <i class="fas fa-book"></i>
+        </div>
+        <div class="stat-info">
+            <h3 id="stat-active-subjects">0</h3>
+            <p>Active Subjects</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon green">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <h3 id="stat-total-students">251</h3>
+            <p>Total Students</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="stat-info">
+            <h3 id="stat-announcements">0</h3>
+            <p>Announcements</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon purple">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="stat-info">
+            <h3 id="stat-materials">0</h3>
+            <p>Materials Uploaded</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon red">
+            <i class="fas fa-clipboard-list"></i>
+        </div>
+        <div class="stat-info">
+            <h3 id="stat-assignments">0</h3>
+            <p>Active Assignments</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-info">
+            <h3 id="stat-pending-reviews">8</h3>
+            <p>Pending Reviews</p>
+        </div>
+    </div>
+</div>
+
+<div class="quick-actions-section">
+    <h3>Quick Actions</h3>
+    <div class="quick-actions">
+        <button class="quick-action-btn blue" onclick="openAnnouncementModal()">
+            <i class="fas fa-bell"></i>
+            <span>Post Announcement</span>
+        </button>
+        <button class="quick-action-btn green" onclick="window.location.href='/materials'">
+            <i class="fas fa-file-alt"></i>
+            <span>Upload Material</span>
+        </button>
+        <button class="quick-action-btn purple" onclick="window.location.href='/assignments'">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Create Assignment</span>
+        </button>
+        <button class="quick-action-btn orange" onclick="openSubjectModal()">
+            <i class="fas fa-book"></i>
+            <span>Add Subject</span>
+        </button>
+    </div>
+</div>
+
+<div class="dashboard-content-grid">
+    <div class="dashboard-section">
+        <div class="section-header">
+            <h3>Latest Activity</h3>
+        </div>
+        <div class="activity-list" id="latest-activity">
+            <!-- Activity items will be loaded here -->
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <div class="section-header">
+            <h3>Upcoming Deadlines</h3>
+            <span class="badge" id="deadline-count">0 Active</span>
+        </div>
+        <div class="deadlines-list" id="upcoming-deadlines">
+            <!-- Deadline items will be loaded here -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Load dashboard data on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadDashboardStats();
+        loadLatestActivity();
+        loadUpcomingDeadlines();
+        setActiveNav('dashboard');
+    });
+</script>
+{% endblock %}
+

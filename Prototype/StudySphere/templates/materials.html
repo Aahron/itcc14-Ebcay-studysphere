@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Manage Materials</h2>
+        <p>Upload and manage course materials</p>
+    </div>
+    <button class="btn-primary" onclick="openMaterialModal()">
+        <i class="fas fa-plus"></i>
+        Upload Material
+    </button>
+</div>
+
+<div class="material-stats">
+    <div class="material-stat-card">
+        <h3 id="total-materials">0</h3>
+        <p>Total Materials</p>
+    </div>
+    <div class="material-stat-card">
+        <h3 id="total-pdfs">0</h3>
+        <p>PDFs</p>
+    </div>
+    <div class="material-stat-card">
+        <h3 id="total-videos">0</h3>
+        <p>Videos</p>
+    </div>
+    <div class="material-stat-card">
+        <h3 id="total-size">0 MB</h3>
+        <p>Total Size</p>
+    </div>
+</div>
+
+<div class="materials-list" id="materials-container">
+    <!-- Materials will be loaded here -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadMaterials();
+        setActiveNav('materials');
+    });
+</script>
+{% endblock %}
+

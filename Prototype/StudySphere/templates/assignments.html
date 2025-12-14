@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h2>Manage Assignments</h2>
+        <p>Create and track student assignments.</p>
+    </div>
+    <button class="btn-primary" onclick="openAssignmentModal()">
+        <i class="fas fa-plus"></i>
+        Create Assignment
+    </button>
+</div>
+
+<div class="assignment-stats">
+    <div class="assignment-stat-card">
+        <h3 id="total-assignments">0</h3>
+        <p>Total Assignments</p>
+    </div>
+    <div class="assignment-stat-card">
+        <h3 id="urgent-assignments" class="text-red">0</h3>
+        <p>Urgent</p>
+    </div>
+    <div class="assignment-stat-card">
+        <h3 id="due-this-week" class="text-orange">0</h3>
+        <p>Due This Week</p>
+    </div>
+    <div class="assignment-stat-card">
+        <h3 id="active-assignments" class="text-green">0</h3>
+        <p>Active</p>
+    </div>
+</div>
+
+<div class="assignments-list" id="assignments-container">
+    <!-- Assignments will be loaded here -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAssignments();
+        setActiveNav('assignments');
+    });
+</script>
+{% endblock %}
+
